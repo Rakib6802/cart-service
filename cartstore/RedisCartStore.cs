@@ -35,12 +35,12 @@ namespace cartservice.cartstore
 
         private readonly ConfigurationOptions redisConnectionOptions;
 
-        public RedisCartStore(string redisAddress)
+        public RedisCartStore(string redisAddress, string redisPass)
         {
             // Serialize empty cart into byte array.
             var cart = new Hipstershop.Cart();
             emptyCartBytes = cart.ToByteArray();
-            connectionString = $"{redisAddress},ssl=false,allowAdmin=true,abortConnect=false";
+            connectionString = $"{redisAddress},ssl=false,allowAdmin=true,abortConnect=false,password={redisPass}";
 
             redisConnectionOptions = ConfigurationOptions.Parse(connectionString);
 
